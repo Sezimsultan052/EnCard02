@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/wordsFragment">
+
+    <fragment
+        android:id="@+id/baseFragment"
+        android:name="com.example.encard02.base.BaseBottomSheetDialogFragment"
+        android:label="BaseFragment" />
+    <fragment
+        android:id="@+id/addWordsFragment"
+        android:name="com.example.encard02.ui.fragment.AddWordsFragment"
+        android:label="fragment_add_words"
+        tools:layout="@layout/fragment_add_words" />
+    <fragment
+        android:id="@+id/wordsFragment"
+        android:name="com.example.encard02.ui.fragment.WordsFragment"
+        android:label="fragment_words"
+        tools:layout="@layout/fragment_words" />
+</navigation>

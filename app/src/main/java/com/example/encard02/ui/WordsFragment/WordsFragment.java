@@ -1,4 +1,4 @@
-package com.example.encard02.ui.fragment;
+package com.example.encard02.ui.WordsFragment;
 
 import android.os.Bundle;
 
@@ -11,15 +11,11 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.PixabayResponse;
-import com.example.encard02.App;
 import com.example.encard02.base.BaseFragment;
 import com.example.encard02.common.Resource;
 import com.example.encard02.databinding.FragmentWordsBinding;
-import com.example.encard02.ui.fragment.AddWordsFragment;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import com.example.encard02.ui.AddWordsFragment.AddWordsFragment;
+import com.example.encard02.ui.AddWordsFragment.ISendKeyword;
 
 
 public class WordsFragment extends BaseFragment<FragmentWordsBinding> implements ISendKeyword {

@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="10dp"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.AddWordsFragment">
+    tools:context=".ui.AddWordsFragment.AddWordsFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -33,6 +33,7 @@
         android:id="@+id/et_word"/>
 
     <Button
+        android:visibility="gone"
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"

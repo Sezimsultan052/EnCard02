@@ -1,4 +1,4 @@
-package com.example.encard02.ui.fragment;
+package com.example.encard02.ui.WordsFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;

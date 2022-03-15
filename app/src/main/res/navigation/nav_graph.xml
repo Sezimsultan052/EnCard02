@@ -11,12 +11,12 @@
         android:label="BaseFragment" />
     <fragment
         android:id="@+id/addWordsFragment"
-        android:name="com.example.encard02.ui.fragment.AddWordsFragment"
+        android:name="com.example.encard02.ui.AddWordsFragment.AddWordsFragment"
         android:label="fragment_add_words"
         tools:layout="@layout/fragment_add_words" />
     <fragment
         android:id="@+id/wordsFragment"
-        android:name="com.example.encard02.ui.fragment.WordsFragment"
+        android:name="com.example.encard02.ui.WordsFragment.WordsFragment"
         android:label="fragment_words"
         tools:layout="@layout/fragment_words" />
 </navigation>

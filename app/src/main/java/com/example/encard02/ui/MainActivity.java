@@ -1,4 +1,4 @@
-package com.example.encard02.ui.activity;
+package com.example.encard02.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 

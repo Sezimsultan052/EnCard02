@@ -1,4 +1,4 @@
-package com.example.encard02.ui.fragment;
+package com.example.encard02.ui.AddWordsFragment;
 
 public interface ISendKeyword {
     void sendKeyword(String text);

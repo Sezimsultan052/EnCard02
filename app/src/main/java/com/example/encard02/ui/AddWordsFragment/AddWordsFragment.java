@@ -24,6 +24,8 @@ private ISendKeyword iSendKeyword;
 private WordViewModel viewModel;
 
     private Handler handler;
+    private String text;
+    private Integer page = 1;
     private Timer timer = new Timer();
     private final long DELAY = 2000; // Milliseconds
 
@@ -57,9 +59,13 @@ private WordViewModel viewModel;
                 int length = binding.etWord.getText().length();
                 handler = new Handler();
                 handler.postDelayed(() -> {
-                    if (length == binding.etWord.getText().length()) {
-                        iSendKeyword.sendKeyword(binding.etWord.getText().toString());
-                        controller.navigate(R.id.wordsFragment);
+                    text = binding.etWord.getText().toString();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("text", text);
+                    if (length == text.length()) {
+                        dismiss();
+                        iSendKeyword.sendKeyword(text, page);
+                        controller.navigate(R.id.wordsFragment, bundle);
                     }
                 }, DELAY);
 

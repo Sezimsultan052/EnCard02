@@ -11,18 +11,24 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.PixabayResponse;
+import com.example.encard02.R;
 import com.example.encard02.base.BaseFragment;
 import com.example.encard02.common.Resource;
 import com.example.encard02.databinding.FragmentWordsBinding;
 import com.example.encard02.ui.AddWordsFragment.AddWordsFragment;
 import com.example.encard02.ui.AddWordsFragment.ISendKeyword;
 
+import dagger.hilt.android.AndroidEntryPoint;
 
+@AndroidEntryPoint
 public class WordsFragment extends BaseFragment<FragmentWordsBinding> implements ISendKeyword {
 
     private WordAdapter adapter;
     private WordViewModel wordViewModel;
     private AddWordsFragment addWordsFragment;
+
+    private String newWord;
+    private int newPage = 1;
 
 
 
@@ -35,8 +41,28 @@ public class WordsFragment extends BaseFragment<FragmentWordsBinding> implements
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initClickers();
+        initRefresh();
 
     }
+
+    private void initRefresh() {
+        binding.swipeRefresh.setOnRefreshListener(() -> {
+            if (getArguments() != null) {
+                newWord = getArguments().getString("word");
+                wordViewModel.getMutableLiveData(newWord, newPage += 1);
+            }
+            binding.swipeRefresh.setRefreshing(false);
+            binding.swipeRefresh.setColorSchemeResources(R.color.black,
+                    R.color.white, R.color.red);
+        });
+    }
+
+//    private void getBundleValue() {
+//        if (getArguments() != null) {
+//            newWord = getArguments().getString("word");
+//            wordViewModel.getMutableLiveData(newWord, newPage += 1);
+//        }
+//    }
 
     @Override
     protected void setupUI() {
@@ -74,7 +100,7 @@ public class WordsFragment extends BaseFragment<FragmentWordsBinding> implements
 
 
     @Override
-    public void sendKeyword(String text) {
-        wordViewModel.getMutableLiveData(text);
+    public void sendKeyword(String text, int page) {
+        wordViewModel.getMutableLiveData(text, page);
     }
 }

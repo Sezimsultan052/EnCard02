@@ -9,6 +9,7 @@ import retrofit2.http.Query;
 public interface PixabayApi {
 
     @GET("/api?key=26067581-e80ef8988a7a7d1873f0e3bf0")
-    Call<PixabayResponse> getImages(@Query("q") String keyWord);
+    Call<PixabayResponse> getImages(@Query("q") String keyWord , @Query("page") int page,
+                                    @Query("per_page") int pageCount);
 
 }

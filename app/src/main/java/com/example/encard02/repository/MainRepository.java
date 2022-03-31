@@ -7,21 +7,25 @@ import com.example.encard02.App;
 import com.example.encard02.common.Resource;
 import com.example.encard02.data.network.PixabayApi;
 
+import javax.inject.Inject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainRepository {
     private PixabayApi api;
+    private final int pageCount = 10;
 
+    @Inject
     public MainRepository(PixabayApi api) {
         this.api = api;
     }
 
-    public MutableLiveData<Resource<PixabayResponse>> getImage(String word) {
+    public MutableLiveData<Resource<PixabayResponse>> getImage(String word, int page) {
         MutableLiveData<Resource<PixabayResponse>> liveData = new MutableLiveData<>();
         liveData.setValue(Resource.loading());
-        App.pixabayApi.getImages(word).enqueue(new Callback<PixabayResponse>() {
+        api.getImages(word, page, pageCount ).enqueue(new Callback<PixabayResponse>() {
             @Override
             public void onResponse(Call<PixabayResponse> call, Response<PixabayResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {

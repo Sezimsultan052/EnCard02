@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -54,4 +55,31 @@ dependencies {
     //glide
     implementation 'com.github.bumptech.glide:glide:4.13.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
+
+    // OkHttp
+    implementation "com.squareup.okhttp3:okhttp-bom:4.9.0"
+    implementation "com.squareup.okhttp3:okhttp"
+    implementation "com.squareup.okhttp3:logging-interceptor"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    //ViewModel
+    implementation 'android.arch.lifecycle:viewmodel:1.1.1'
+
+    //Hilt
+    implementation "com.google.dagger:hilt-android:2.36"
+    annotationProcessor "com.google.dagger:hilt-compiler:2.36"
+
+    //pagging
+    implementation "android.arch.paging:runtime:1.0.1"
+
+    //TabsIndicator
+    implementation 'com.tbuonomo:dotsindicator:4.2'
+
+    //LottieAnimation
+    def lottieVersion = "3.4.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    def room_version = "2.4.2"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
 }

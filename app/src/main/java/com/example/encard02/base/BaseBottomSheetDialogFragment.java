@@ -28,8 +28,13 @@ public abstract class BaseBottomSheetDialogFragment<VB extends ViewBinding>  ext
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = bind();
         controller = Navigation.findNavController(requireActivity(), R.id.nav_host);
+        setupUI();
+        setupObservers();
         return binding.getRoot();
     }
+
+    protected abstract void setupUI();
+    protected abstract void setupObservers();
 }
 
 

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/wordsFragment">
+    app:startDestination="@id/categoryFragment">
 
     <fragment
         android:id="@+id/baseFragment"
@@ -18,10 +18,30 @@
         android:id="@+id/wordsFragment"
         android:name="com.example.encard02.ui.WordsFragment.WordsFragment"
         android:label="fragment_words"
-        tools:layout="@layout/fragment_words" />
+        tools:layout="@layout/fragment_words" >
+        <argument
+            android:name="category"
+            app:argType="string"
+            android:defaultValue='""'/>
+    </fragment>
     <fragment
         android:id="@+id/onBoardFragment"
         android:name="com.example.encard02.ui.OnBoardFragment.OnBoardFragment"
         android:label="fragment_on_board"
         tools:layout="@layout/fragment_on_board" />
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.example.encard02.ui.category.CategoryFragment"
+        android:label="fragment_category"
+        tools:layout="@layout/fragment_category" >
+        <action
+            android:id="@+id/action_categoryFragment_to_wordsFragment"
+            app:destination="@id/wordsFragment" >
+
+            <argument
+                android:name="category"
+                app:argType="string"
+                android:defaultValue='""'/>
+        </action>
+    </fragment>
 </navigation>

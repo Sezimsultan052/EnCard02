@@ -20,13 +20,10 @@ import java.util.TimerTask;
 
 public class AddWordsFragment extends BaseBottomSheetDialogFragment<FragmentAddWordsBinding> {
 
-private ISendKeyword iSendKeyword;
-private WordViewModel viewModel;
+    private ISendKeyword iSendKeyword;
 
     private Handler handler;
     private String text;
-    private Integer page = 1;
-    private Timer timer = new Timer();
     private final long DELAY = 2000; // Milliseconds
 
     public AddWordsFragment(ISendKeyword iSendKeyword) {
@@ -39,15 +36,22 @@ private WordViewModel viewModel;
     }
 
     @Override
+    protected void setupUI() {
+
+    }
+
+    @Override
+    protected void setupObservers() {
+
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initClickers();
     }
 
     private void initClickers() {
-
-        //-------->OPEN FRAGMENT WITH TEXTWATCHER<---------
-
         binding.etWord.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -60,12 +64,10 @@ private WordViewModel viewModel;
                 handler = new Handler();
                 handler.postDelayed(() -> {
                     text = binding.etWord.getText().toString();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("text", text);
                     if (length == text.length()) {
+                        iSendKeyword.sendKeyword(text, getTag());
+                        controller.navigate(R.id.wordsFragment);
                         dismiss();
-                        iSendKeyword.sendKeyword(text, page);
-                        controller.navigate(R.id.wordsFragment, bundle);
                     }
                 }, DELAY);
 
@@ -74,43 +76,10 @@ private WordViewModel viewModel;
 
             @Override
             public void afterTextChanged(Editable s) {
-                //this code is not working -> CORRECT ERROR
-//                int wordLength = binding.etWord.getText().length();
-//                timer.cancel();
-//                timer = new Timer();
-//                timer.schedule(
-//                        new TimerTask() {
-//                            @Override
-//                            public void run() {
-//                                if (wordLength ==  binding.etWord.getText().length()) {
-//                                    iSendKeyword.sendKeyword(binding.etWord.getText().toString());
-//                                    controller.navigate(R.id.wordsFragment);
-//                                }
-//
-//                            }
-//                        },
-//                        DELAY
-//                );
+
             }
         });
-
-//            ----> open fragment with OnClickListener <------
-//        binding.btnCreate.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-////                    if(!binding.etWord.getText().toString().isEmpty()){
-////                        iSendKeyword.sendKeyword(binding.etWord.getText().toString());
-////                        controller.navigate(R.id.wordsFragment);
-////                        dismiss();
-////                    }
-//                    String word = binding.etWord.getText().toString();
-//                    viewModel.getHitLiveData(word).observe(getViewLifecycleOwner(), images -> {
-//
-//                    });
-//                }
-//        });
     }
-
 
 
 }

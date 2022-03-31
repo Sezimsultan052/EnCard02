@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.Hit;
+import com.example.encard02.data.model.WordEntity;
 import com.example.encard02.databinding.ItemRvImageBinding;
 
 import java.util.ArrayList;
@@ -16,11 +17,11 @@ import java.util.List;
 
 public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder> {
 
-    private List<Hit> imageList = new ArrayList<>();
+    private List<WordEntity> imageList = new ArrayList<>();
     private ItemRvImageBinding binding;
 
 
-    public void setImageList(List<Hit> imageList) {
+    public void setImageList(List<WordEntity> imageList) {
         this.imageList = imageList;
         notifyDataSetChanged();
     }
@@ -47,11 +48,10 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
             super(itemView);
         }
 
-        public void onBind(Hit hit) {
-            Glide.with(binding.getRoot()).load(hit.getLargeImageURL()).centerCrop()
+        public void onBind(WordEntity hit) {
+            binding.tvItemTitle.setText(hit.getWord());
+            Glide.with(binding.getRoot()).load(hit.getUrl()).centerCrop()
                     .into(binding.itemImage);
         }
     }
-
-
 }
